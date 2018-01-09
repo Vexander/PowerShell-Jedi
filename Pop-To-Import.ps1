@@ -218,5 +218,3 @@ function FMAudit-Import {
         } # End If
     }
 }
-
-FMAudit-Import -sUsername xerox@aloesolutions.co.za -sPassword Topo9400
