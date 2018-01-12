@@ -4,7 +4,7 @@
 $ErrorActionPreference = "SilentlyContinue"
 
 #Dot Source required Function Libraries
-. "C:\Users\adm-rgottwald\Documents\WindowsPowerShell\Scripts\Logging_Functions.ps1"
+. "C:\Scripts\Logging_Functions.ps1"
 
 #----------------------------------------------------------[Declarations]----------------------------------------------------------
 
@@ -131,7 +131,7 @@ function FMAudit-Import {
 
         # The folder to save the file to.
         [Parameter(Mandatory=$false, ValueFromPipeline=$true)]
-        [string]$sImportPath = "\\aloe-2016-web\Imports\"
+        [string]$sImportPath = "\\FMAuditServer\Imports\"
     )
 
     Begin { 
