@@ -97,6 +97,20 @@ function Count-Messages {
         Return $Count
 }
 
+Function Add-Line {
+	[CmdletBinding()]
+    [Alias()]
+    Param
+    (
+        # The username of the email box to query.
+        [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
+        [ValidateNotNull()]
+        [ValidateNotNullOrEmpty()]
+        [string]$sMessage
+    )
+	Log-Write -LogPath $sLogFile -LineValue $sMessage
+	
+}
 function FMAudit-Import {
 <#
     .Synopsis
@@ -168,15 +182,15 @@ function FMAudit-Import {
                         # If the attachments name is 'Data.fma' save the file with a random name to the import folder
                         if ($attachment.Name -eq "Data.fma") {
                             # Start Logging and Verbose.
-                            Log-Write -LogPath $sLogFile -LineValue "Processeing email $cCount of $iCount..."
-                            Write-Verbose -Message "Processeing email $cCount of $iCount..."
+                            Add-Line -sMessage "Processeing email $cCount of $iCount..."
+							Write-Verbose -Message "Processeing email $cCount of $iCount..."
                             # End Logging and Verbose.
 
                             $randomstring = Random-String 12
                             $path = $sImportPath + "\" + $randomstring + ".fma"
                             
                             # Start Logging and Verbose.
-                            Log-Write -LogPath $sLogFile -LineValue "Exporitng attachment..."
+                            Add-Line -sMessage  "Exporitng attachment..."
                             Write-Verbose -Message "Exporitng attachment..."
                             # End Logging and Verbose.
 
@@ -184,7 +198,7 @@ function FMAudit-Import {
                             Set-Content -Path $path -Value $Content -Encoding Byte 
 
                             # Start Logging and Verbose.
-                            Log-Write -LogPath $sLogFile -LineValue "Deleting email $cCount of $iCount..."
+                            Add-Line -sMessage  "Deleting email $cCount of $iCount..."
                             Write-Verbose -Message "Deleting email $cCount of $iCount..."
                             # End Logging and Verbose.
                             
@@ -193,7 +207,7 @@ function FMAudit-Import {
                             Invoke-RestMethod -Uri $queryDelete -Method Delete -Credential $cred
 
                             # Start Logging and Verbose.
-                            Log-Write -LogPath $sLogFile -LineValue "Completed processing email $cCount of $iCount."
+                          	 Add-Line -sMessage  "Completed processing email $cCount of $iCount."
                             Write-Verbose -Message "Completed processing email $cCount of $iCount."
                             # End Logging and Verbose.
 
