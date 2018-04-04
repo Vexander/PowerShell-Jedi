@@ -1,7 +1,7 @@
 #Specify tenant admin and site URL
 $User = "rgottwald@aloesolutions.co.za"
 $SiteURL = "https://aloeeastlondon.sharepoint.com/sites/og_ict"
-$ListTitle = "Test List 10"
+$ListTitle = "Test List 13"
 
 #Add references to SharePoint client assemblies and authenticate to Office 365 site - required for CSOM
 Add-Type -Path "C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\15\ISAPI\Microsoft.SharePoint.Client.dll"
@@ -76,7 +76,7 @@ $schemaASSET_NUMBER = "<Field Type='Text' Name='ASSET_NUMBER' StaticName='ASSET_
 $List.Fields.AddFieldAsXml($schemaASSET_NUMBER,$true,[Microsoft.SharePoint.Client.AddFieldOptions]::AddFieldToDefaultView)
 $schemaSTAPLER = "<Field Type='Boolean' Name='STAPLER' StaticName='STAPLER' DisplayName='Stapler'><Default>0</Default></Field>"
 $List.Fields.AddFieldAsXml($schemaSTAPLER,$true,[Microsoft.SharePoint.Client.AddFieldOptions]::AddFieldToDefaultView)
-$schemaNET_POINT = "<Field Type='Choic' Name='NET_POINT' StaticName='NET_POINT' DisplayName='Network Point'><CHOICES><CHOICE>N</CHOICE><CHOICE>Y1</CHOICE><CHOICE>Y2</CHOICE></CHOICES></Field></Field>"
+$schemaNET_POINT = "<Field Type='Choice' Name='NET_POINT' StaticName='NET_POINT' DisplayName='Network Point'><CHOICES><CHOICE>N</CHOICE><CHOICE>Y1</CHOICE><CHOICE>Y2</CHOICE></CHOICES></Field>"
 $List.Fields.AddFieldAsXml($schemaNET_POINT,$true,[Microsoft.SharePoint.Client.AddFieldOptions]::AddFieldToDefaultView)
 $schemaFAX_PORT = "<Field Type='Boolean' Name='FAX_PORT' StaticName='FAX_PORT' DisplayName='Fax Port'><Default>0</Default></Field>"
 $List.Fields.AddFieldAsXml($schemaFAX_PORT,$true,[Microsoft.SharePoint.Client.AddFieldOptions]::AddFieldToDefaultView)
@@ -133,5 +133,3 @@ foreach ($ExcelItem in $ExcelItems) {
     $Item.Update()
     $Context.ExecuteQuery()
 }
-
-    
