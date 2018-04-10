@@ -54,7 +54,7 @@ $ExcelItems = Import-Csv -Path C:\Users\user\Desktop\WSU_MFP_INVENTORY_CSV.csv
 foreach ($ExcelItem in $ExcelItems) {
     $ListItemInfo = New-Object Microsoft.SharePoint.Client.ListItemCreationInformation
     $Item = $List.AddItem($ListItemInfo)
-    $Item["E_x002e_G_x002e__x0020Date] = $ExcelItem.EGDATE
+    $Item["E_x002e_G_x002e__x0020Date"] = $ExcelItem.EGDATE
     $Item["E_x002e_G_x002e__x0020Text"] = $ExcelItem.EGTEXT
     $Item["E_x002e_G_x002e__x0020Choice"] = $ExcelItem.EGCHOICE
     $Item["E_x002e_G_x002e__x0020Boo"] = $ExcelItem.EGBOO
